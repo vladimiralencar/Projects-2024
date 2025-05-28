@@ -6,6 +6,13 @@
 # Um astronauta no topo de uma montanha rochosa.
 # Portrait of a samurai warrior in a busy city downtown.
 
+import asyncio
+try:  
+    asyncio.get_running_loop()
+except RuntimeError:
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
 # Imports
 import diffusers
 import streamlit as st

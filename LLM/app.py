@@ -6,6 +6,8 @@
 # Um astronauta no topo de uma montanha rochosa.
 # Portrait of a samurai warrior in a busy city downtown.
 
+# Um pôr do sol sobre um lago sereno arrodeado de árvores, com cores vibrantes
+
 import asyncio
 try:  
     asyncio.get_running_loop()
@@ -28,14 +30,19 @@ st.title("APP - Gerar imagens a partir de texto")
 @st.cache_resource
 def carrega_modelo():
 
-    # Cria o pipeline
-    pipe = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", torch_dtype=torch.float16)
+@st.cache_resource
+def carrega_modelo():
+    import torch
+    from diffusers import StableDiffusionPipeline
 
-    # Se GPU disponível, envia o pipeline para a memória da GPU
+    pipe = StableDiffusionPipeline.from_pretrained(
+        "CompVis/stable-diffusion-v1-4", 
+        torch_dtype=torch.float16
+    )
     if torch.cuda.is_available():
         pipe = pipe.to("cuda")
-
     return pipe
+
 
 # Cria o objeto
 pipe = carrega_modelo()

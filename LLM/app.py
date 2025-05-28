@@ -29,9 +29,6 @@ st.title("APP - Gerar imagens a partir de texto")
 # Carrega o modelo 
 @st.cache_resource
 def carrega_modelo():
-
-@st.cache_resource
-def carrega_modelo():
     import torch
     from diffusers import StableDiffusionPipeline
 
